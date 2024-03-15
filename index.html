@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Assessment</title>
+</head>
+<body>
+    <h1>Personality Assessment</h1>
+    <form id="personalityForm">
+        <p>Choose the options that best describe you:</p>
+        <fieldset>
+            <legend>Favorite Food:</legend>
+            <img src="./pizza.png" alt="pizza"height="50px" width="50px">
+            <label><input type="radio" name="food" value="pizza"> Pizza</label><br>
+            <img src="./sushi.png" alt="sushi"height="50px" width="50px">
+            <label><input type="radio" name="food" value="sushi"> Sushi</label><br>
+            <img src="./burger.png" alt="burger"height="50px" width="50px">
+            <label><input type="radio" name="food" value="burger"> Burger</label><br>
+            <img src="./salad.png" alt="salad"height="50px" width="50px">
+            <label><input type="radio" name="food" value="salad"> Salad</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Favorite Color:</legend>
+            <img src="./red.png" alt="pizza"height="50px" width="50px">
+            <label><input type="radio" name="color" value="red"> Red</label><br>
+            <img src="./blue.png" alt="blue"height="50px" width="50px">
+            <label><input type="radio" name="color" value="blue"> Blue</label><br>
+            <img src="./green.png" alt="green"height="50px" width="50px">
+            <label><input type="radio" name="color" value="green"> Green</label><br>
+            <img src="./yellow.png" alt="yellow"height="50px" width="50px">
+            <label><input type="radio" name="color" value="yellow"> Yellow</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Favorite Cartoon Character:</legend>
+            <img src="./mickey.png" alt="green"height="50px" width="50px">
+            <label><input type="radio" name="cartoon" value="mickey"> Mickey Mouse</label><br>
+            <img src="./sponge.png" alt="green"height="50px" width="50px">
+            <label><input type="radio" name="cartoon" value="spongebob"> SpongeBob SquarePants</label><br>
+            <img src="./pikachu.png" alt="green"height="50px" width="50px">
+            <label><input type="radio" name="cartoon" value="pikachu"> Pikachu</label><br>
+            <img src="./goku.png" alt="green"height="50px" width="50px">
+            <label><input type="radio" name="cartoon" value="goku"> Goku</label><br>
+        </fieldset>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('personalityForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get selected values for food, color, and cartoon
+            var selectedFood = document.querySelector('input[name="food"]:checked').value;
+            var selectedColor = document.querySelector('input[name="color"]:checked').value;
+            var selectedCartoon = document.querySelector('input[name="cartoon"]:checked').value;
+
+            // Map choices to personality traits
+            var personalityTraits = {
+                'pizza-red-mickey': 'Outgoing and Fun-loving',
+                'pizza-blue-mickey': 'Creative and Adventurous',
+                'pizza-green-mickey': 'Easygoing and Sociable',
+                'pizza-yellow-mickey': 'Optimistic and Energetic',
+                'sushi-red-mickey': 'Artistic and Imaginative',
+                'sushi-blue-mickey': 'Intelligent and Analytical',
+                'sushi-green-mickey': 'Organized and Detail-oriented',
+                'sushi-yellow-mickey': 'Curious and Versatile',
+                'burger-red-mickey': 'Spontaneous and Enthusiastic',
+                'burger-blue-mickey': 'Practical and Dependable',
+                'burger-green-mickey': 'Loyal and Trustworthy',
+                'burger-yellow-mickey': 'Patient and Empathetic',
+                'salad-red-mickey': 'Balanced and Harmonious',
+                'salad-blue-mickey': 'Focused and Goal-oriented',
+                'salad-green-mickey': 'Health-conscious and Active',
+                'salad-yellow-mickey': 'Adaptable and Open-minded',
+
+                // Add combinations with other cartoon characters here
+                'pizza-red-spongebob': 'Cheerful and Optimistic',
+                'pizza-blue-spongebob': 'Creative and Imaginative',
+                'pizza-green-spongebob': 'Energetic and Enthusiastic',
+                'pizza-yellow-spongebob': 'Friendly and Sociable',
+                'sushi-red-spongebob': 'Adventurous and Bold',
+                'sushi-blue-spongebob': 'Curious and Inquisitive',
+                'sushi-green-spongebob': 'Positive and Resilient',
+                'sushi-yellow-spongebob': 'Playful and Fun-loving',
+                'burger-red-spongebob': 'Loyal and Caring',
+                'burger-blue-spongebob': 'Spirited and Dynamic',
+                'burger-green-spongebob': 'Outgoing and Sociable',
+                'burger-yellow-spongebob': 'Creative and Expressive',
+                'salad-red-spongebob': 'Calm and Balanced',
+                'salad-blue-spongebob': 'Rational and Logical',
+                'salad-green-spongebob': 'Healthy and Active',
+                'salad-yellow-spongebob': 'Cheerful and Optimistic',
+
+                'pizza-red-pikachu': 'Energetic and Enthusiastic',
+                'pizza-blue-pikachu': 'Friendly and Sociable',
+                'pizza-green-pikachu': 'Loyal and Trustworthy',
+                'pizza-yellow-pikachu': 'Optimistic and Cheerful',
+                'sushi-red-pikachu': 'Adventurous and Brave',
+                'sushi-blue-pikachu': 'Curious and Playful',
+                'sushi-green-pikachu': 'Caring and Empathetic',
+                'sushi-yellow-pikachu': 'Adaptable and Resilient',
+                'burger-red-pikachu': 'Optimistic and Energetic',
+                'burger-blue-pikachu': 'Loyal and Dependable',
+                'burger-green-pikachu': 'Friendly and Outgoing',
+                'burger-yellow-pikachu': 'Creative and Imaginative',
+                'salad-red-pikachu': 'Balanced and Thoughtful',
+                'salad-blue-pikachu': 'Logical and Analytical',
+                'salad-green-pikachu': 'Healthy and Active',
+                'salad-yellow-pikachu': 'Cheerful and Playful',
+
+                'pizza-red-goku': 'Determined and Focused',
+                'pizza-blue-goku': 'Courageous and Fearless',
+                'pizza-green-goku': 'Resilient and Strong-willed',
+                'pizza-yellow-goku': 'Optimistic and Heroic',
+                'sushi-red-goku': 'Brave and Adventurous',
+                'sushi-blue-goku': 'Driven and Ambitious',
+                'sushi-green-goku': 'Disciplined and Dedicated',
+                'sushi-yellow-goku': 'Courageous and Noble',
+                'burger-red-goku': 'Brave and Courageous',
+                'burger-blue-goku': 'Confident and Charismatic',
+                'burger-green-goku': 'Loyal and Protective',
+                'burger-yellow-goku': 'Heroic and Selfless',
+                'salad-red-goku': 'Balanced and Focused',
+                'salad-blue-goku': 'Resilient and Determined',
+                'salad-green-goku': 'Healthy and Strong',
+                'salad-yellow-goku': 'Optimistic and Courageous'
+            };
+
+            // Construct key for personalityTraits object
+            var key = selectedFood + '-' + selectedColor + '-' + selectedCartoon;
+
+            // Display personality trait based on the user's choices
+            var resultDiv = document.getElementById('result');
+            if (personalityTraits[key]) {
+                resultDiv.innerHTML = '<p>Your personality trait is: ' + personalityTraits[key] + '</p>';
+            } else {
+                resultDiv.innerHTML = '<p>Sorry, we couldn\'t recognize that combination. Please try again.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
